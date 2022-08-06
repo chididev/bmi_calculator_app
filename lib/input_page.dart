@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/icon_floating_button.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/reuseable_card.dart';
 import 'package:bmi_calculator/constants.dart';
@@ -22,6 +23,10 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   //Contains the height from our slider.
   int height = 200;
+  //Contains the weight value from our weight tile.
+  int weight = 80;
+  //Contains the age value from our age tile.
+  int age = 24;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          //First tile.
           Expanded(
             child: Row(
               children: [
@@ -71,43 +77,156 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+          //Second tile.
           Expanded(
             child: ReuseableContainer(
               onPress: () {},
               colour: kInactiveColor,
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'HEIGHT',
-                    style: kLabelStyle,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: [
-                      Text(
-                        height.toString(),
-                        style: kNumberStyle,
+              cardChild: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'HEIGHT',
+                      style: kLabelStyle,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          height.toString(),
+                          style: kNumberStyle,
+                        ),
+                        const Text(
+                          'cm',
+                          style: kLabelStyle,
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      value: height.toDouble(),
+                      min: kMinimumHeight,
+                      max: kMaximumHeight,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          //Third tile.
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ReuseableContainer(
+                    onPress: () {},
+                    colour: kInactiveColor,
+                    cardChild: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'WEIGHT',
+                            style: kLabelStyle,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kNumberStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconFloatingButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPress: () {
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  }),
+                              const SizedBox(
+                                width: 10.0,
+                              ),
+                              IconFloatingButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPress: () {
+                                    setState(() {
+                                      weight++;
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ],
                       ),
-                      const Text(
-                        'cm',
-                        style: kLabelStyle,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ReuseableContainer(
+                    onPress: () {},
+                    colour: kInactiveColor,
+                    cardChild: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'AGE',
+                            style: kLabelStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconFloatingButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPress: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  }),
+                              const SizedBox(
+                                width: 10.0,
+                              ),
+                              IconFloatingButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPress: () {
+                                    setState(() {
+                                      age++;
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                  Slider(
-                    value: height.toDouble(),
-                    min: kMinimumHeight,
-                    max: kMaximumHeight,
-                    onChanged: (double newValue) {
-                      setState(() {
-                        height = newValue.round();
-                      });
-                    },
-                  ),
-                ],
+                ),
+              ],
+            ),
+          ),
+          //Fourth tile.
+          Container(
+            color: kBottomButtonColour,
+            height: kBottomButtonHeight,
+            width: double.infinity,
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                'CALCULATE',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                ),
               ),
             ),
           ),
