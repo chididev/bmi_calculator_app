@@ -14,7 +14,7 @@ class IconContent extends StatelessWidget {
       children: [
         Icon(
           iconName,
-          size: 80.0,
+          size: 50.0,
         ),
         const SizedBox(
           height: 15.0,

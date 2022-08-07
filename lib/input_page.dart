@@ -4,6 +4,8 @@ import 'package:bmi_calculator/reuseable_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/result_page.dart';
+import 'package:bmi_calculator/bottom_button.dart';
 
 //Enumeration of our gender.
 enum Gender {
@@ -82,41 +84,39 @@ class _InputPageState extends State<InputPage> {
             child: ReuseableContainer(
               onPress: () {},
               colour: kInactiveColor,
-              cardChild: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'HEIGHT',
-                      style: kLabelStyle,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Text(
-                          height.toString(),
-                          style: kNumberStyle,
-                        ),
-                        const Text(
-                          'cm',
-                          style: kLabelStyle,
-                        ),
-                      ],
-                    ),
-                    Slider(
-                      value: height.toDouble(),
-                      min: kMinimumHeight,
-                      max: kMaximumHeight,
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                      },
-                    ),
-                  ],
-                ),
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'HEIGHT',
+                    style: kLabelStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberStyle,
+                      ),
+                      const Text(
+                        'cm',
+                        style: kLabelStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: kMinimumHeight,
+                    max: kMaximumHeight,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.round();
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
           ),
@@ -129,42 +129,40 @@ class _InputPageState extends State<InputPage> {
                   child: ReuseableContainer(
                     onPress: () {},
                     colour: kInactiveColor,
-                    cardChild: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'WEIGHT',
-                            style: kLabelStyle,
-                          ),
-                          Text(
-                            weight.toString(),
-                            style: kNumberStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconFloatingButton(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPress: () {
-                                    setState(() {
-                                      weight--;
-                                    });
-                                  }),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                              IconFloatingButton(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPress: () {
-                                    setState(() {
-                                      weight++;
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ],
-                      ),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: kLabelStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconFloatingButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPress: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                }),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            IconFloatingButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPress: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -172,42 +170,40 @@ class _InputPageState extends State<InputPage> {
                   child: ReuseableContainer(
                     onPress: () {},
                     colour: kInactiveColor,
-                    cardChild: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'AGE',
-                            style: kLabelStyle,
-                          ),
-                          Text(
-                            age.toString(),
-                            style: kNumberStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconFloatingButton(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPress: () {
-                                    setState(() {
-                                      age--;
-                                    });
-                                  }),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                              IconFloatingButton(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPress: () {
-                                    setState(() {
-                                      age++;
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ],
-                      ),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: kLabelStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconFloatingButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPress: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                }),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            IconFloatingButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPress: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -215,20 +211,16 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           //Fourth tile.
-          Container(
-            color: kBottomButtonColour,
-            height: kBottomButtonHeight,
-            width: double.infinity,
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'CALCULATE',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                ),
-              ),
-            ),
+          BottomButton(
+            label: 'CALCULATE',
+            onPress: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return const ResultPage();
+                }),
+              );
+            },
           ),
         ],
       ),
