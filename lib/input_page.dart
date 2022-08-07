@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/result_page.dart';
 import 'package:bmi_calculator/bottom_button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 //Enumeration of our gender.
 enum Gender {
@@ -214,10 +215,15 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             label: 'CALCULATE',
             onPress: () {
+              CalculatorBrain calculate = CalculatorBrain(weight: weight, height: height);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return const ResultPage();
+                  return ResultPage(
+                    bmiResult: calculate.bmi(),
+                    resultText: calculate.getResult(),
+                    interpretation: calculate.getInterpretation(),
+                  );
                 }),
               );
             },
